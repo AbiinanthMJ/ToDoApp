@@ -1,50 +1,142 @@
-# Welcome to your Expo app 👋
+# ✅ Expo To-Do App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A task management mobile application built with **React Native (Expo)** that allows users to organize their daily activities.  
+The app focuses on simplicity while demonstrating integration with backend APIs and database storage.
 
-## Get started
+---
 
-1. Install dependencies
+## 📌 Project Overview
+This project was developed as part of a learning experience to understand **full-stack mobile app development**.  
+The main goal was to build a **To-Do application** where users can:  
+- Create, update, and delete tasks  
+- Store tasks in a database  
+- View tasks with a clean and simple UI  
 
+We aimed to also implement authentication and additional features but faced limitations during development.
+
+---
+
+## 🛠️ Tech Stack
+- **Frontend:** React Native (Expo framework)  
+- **Backend:** Node.js with Express.js  
+- **Database:** MongoDB (cloud-hosted)  
+- **State Management:** React hooks  
+- **Authentication (Planned):** Google OAuth – *not completed*  
+
+---
+
+## ✨ Features Implemented
+- ✅ Add, edit, and delete tasks  
+- ✅ Persistent storage using MongoDB  
+- ✅ Simple and user-friendly UI with Expo components  
+- ✅ Fully functional core features as per requirements  
+
+---
+
+## 🚧 Features Not Implemented
+- ❌ **Google OAuth login** – not implemented due to lack of experience with OAuth flows.  
+- ❌ **Menu and Due Date functionality** – not implemented because of time constraints.  
+
+✔️ Other than the above, all required features have been successfully implemented.
+
+---
+
+## 🚀 Attempted Implementations
+During development, we also explored:  
+- Setting up **API endpoints** with Express.js for CRUD operations  
+- Using **JWT authentication** (partially tested but not finalized)  
+- Preparing the app for **APK builds** to be shared outside Expo Go  
+
+---
+
+## 📥 Download the App
+👉 [**Download APK Here**](https://drive.google.com/file/d/1HvKsbRnzwdEmL8Fia7Jw16MUnZyp-a1f/view)
+
+---
+
+## 🖥️ How to Run Locally
+1. Clone the repository  
+2. Install dependencies  
    ```bash
    npm install
-   ```
 
-2. Start the app
+---
 
+This version:  
+✔️ **Describes what you built and why**  
+✔️ **Lists tools and technologies clearly**  
+✔️ **Mentions what was tried but not finished**  
+✔️ **Includes future plans**  
+✔️ **Keeps APK download link highlighted**  
+
+---
+
+💡 Do you also want me to give you a **final polished version with badges (e.g., Download APK, Built with Expo, License, etc.)**?  
+I can create a **professional GitHub-style README** for you. Shall I proceed?# ✅ Expo To-Do App
+
+A task management mobile application built with **React Native (Expo)** that allows users to organize their daily activities.  
+The app focuses on simplicity while demonstrating integration with backend APIs and database storage.
+
+---
+
+## 📌 Project Overview
+This project was developed as part of a learning experience to understand **full-stack mobile app development**.  
+The main goal was to build a **To-Do application** where users can:  
+- Create, update, and delete tasks  
+- Store tasks in a database  
+- View tasks with a clean and simple UI  
+
+We aimed to also implement authentication and additional features but faced limitations during development.
+
+---
+
+## 🛠️ Tech Stack
+- **Frontend:** React Native (Expo framework)  
+- **Backend:** Node.js with Express.js  
+- **Database:** MongoDB (cloud-hosted)  
+- **State Management:** React hooks  
+- **Authentication (Planned):** Google OAuth – *not completed*  
+
+---
+
+## ✨ Features Implemented
+- ✅ Add, edit, and delete tasks  
+- ✅ Persistent storage using MongoDB  
+- ✅ Simple and user-friendly UI with Expo components  
+- ✅ Fully functional core features as per requirements  
+
+---
+
+## 🚧 Features Not Implemented
+- ❌ **Google OAuth login** – not implemented due to lack of experience with OAuth flows.  
+- ❌ **Menu and Due Date functionality** – not implemented because of time constraints.  
+
+✔️ Other than the above, all required features have been successfully implemented.
+
+---
+
+## 🎥 App Demo (Loom Video)
+Watch the working of the app here:  
+➡️ [**View Loom Video**](https://drive.google.com/file/d/11pGFXb8dkKilCvE11t_bo6NHLE7MXjai/view?usp=drivesdk)
+
+---
+
+## 🚀 Attempted Implementations
+During development, we also explored:  
+- Setting up **API endpoints** with Express.js for CRUD operations  
+- Using **JWT authentication** (partially tested but not finalized)  
+- Preparing the app for **APK builds** to be shared outside Expo Go  
+
+---
+
+## 📥 Download the App
+👉 [**Download APK Here**](https://drive.google.com/file/d/1HvKsbRnzwdEmL8Fia7Jw16MUnZyp-a1f/view)
+
+---
+
+## 🖥️ How to Run Locally
+1. Clone the repository  
+2. Install dependencies  
    ```bash
-   npx expo start
-   ```
+   npm install
 
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
