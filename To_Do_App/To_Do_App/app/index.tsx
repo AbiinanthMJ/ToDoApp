@@ -16,6 +16,7 @@ import { Checkbox } from "expo-checkbox";
 import { useEffect, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useAuth } from "../context/AuthContext";
+import { useRouter } from "expo-router";
 
 type ToDoType = {
   id: number;
@@ -24,7 +25,10 @@ type ToDoType = {
 };
 
 export default function Index() {
-  const { userEmail, logout } = useAuth();
+  const { user, logout } = useAuth();
+  const router = useRouter();
+  const [profileImage, setProfileImage] = useState<string | null>(null);
+  const [displayName, setDisplayName] = useState<string>('');
   
   const todoData = [
     {
@@ -77,6 +81,21 @@ export default function Index() {
       }
     };
     getTodos();
+  }, []);
+
+  useEffect(() => {
+    const loadProfileData = async () => {
+      try {
+        const savedImage = await AsyncStorage.getItem('profile-image');
+        const savedName = await AsyncStorage.getItem('display-name');
+        
+        if (savedImage) setProfileImage(savedImage);
+        if (savedName) setDisplayName(savedName);
+      } catch (error) {
+        console.log('Error loading profile data:', error);
+      }
+    };
+    loadProfileData();
   }, []);
 
   const addTodo = async () => {
@@ -150,7 +169,22 @@ export default function Index() {
           <Ionicons name="menu" size={24} color={"#333"} />
         </TouchableOpacity>
         <View style={styles.userInfo}>
-          <Text style={styles.userEmail}>{userEmail}</Text>
+          <TouchableOpacity 
+            onPress={() => router.push('/profile')} 
+            style={styles.profileContainer}
+          >
+            {profileImage ? (
+              <Image source={{ uri: profileImage }} style={styles.profilePhoto} />
+            ) : (
+              <View style={styles.profilePhotoPlaceholder}>
+                <Ionicons name="person" size={24} color="#666" />
+              </View>
+            )}
+          </TouchableOpacity>
+          <View style={styles.userTextInfo}>
+            <Text style={styles.userName}>{displayName || 'User'}</Text>
+            <Text style={styles.userEmail}>{user?.email}</Text>
+          </View>
           <TouchableOpacity onPress={logout} style={styles.logoutButton}>
             <Ionicons name="log-out-outline" size={20} color={"#666"} />
           </TouchableOpacity>
@@ -253,10 +287,38 @@ const styles = StyleSheet.create({
     alignItems: "center",
     gap: 10,
   },
-  userEmail: {
+  profileContainer: {
+    marginRight: 8,
+  },
+  profilePhoto: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    borderWidth: 2,
+    borderColor: "#4630EB",
+  },
+  profilePhotoPlaceholder: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: "#e0e0e0",
+    justifyContent: "center",
+    alignItems: "center",
+    borderWidth: 2,
+    borderColor: "#4630EB",
+  },
+  userTextInfo: {
+    flex: 1,
+    maxWidth: 120,
+  },
+  userName: {
     fontSize: 14,
+    fontWeight: "600",
+    color: "#333",
+  },
+  userEmail: {
+    fontSize: 12,
     color: "#666",
-    maxWidth: 150,
   },
   logoutButton: {
     padding: 8,

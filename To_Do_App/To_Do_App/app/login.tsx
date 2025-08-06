@@ -19,7 +19,8 @@ export default function Login() {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const { login } = useAuth();
+  const [isGoogleLoading, setIsGoogleLoading] = useState(false);
+  const { login, loginWithGoogle } = useAuth();
 
   const handleLogin = async () => {
     if (!email || !password) {
@@ -30,13 +31,32 @@ export default function Login() {
     setIsLoading(true);
     
     try {
-      // Simulate login process
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      await login(email);
+      await login(email, password);
       setIsLoading(false);
     } catch (error) {
       setIsLoading(false);
       Alert.alert('Error', 'Login failed. Please try again.');
+    }
+  };
+
+  const handleGoogleLogin = async () => {
+    setIsGoogleLoading(true);
+    
+    try {
+      await loginWithGoogle();
+      setIsGoogleLoading(false);
+    } catch (error) {
+      setIsGoogleLoading(false);
+      const errorMessage = error instanceof Error ? error.message : 'Google login failed. Please try again.';
+      
+      if (errorMessage.includes('Google Client ID')) {
+        Alert.alert(
+          'Configuration Required', 
+          'Please configure your Google Client ID in config/auth.ts. See AUTHENTICATION_SETUP.md for instructions.'
+        );
+      } else {
+        Alert.alert('Google Login Error', errorMessage);
+      }
     }
   };
 
@@ -117,6 +137,20 @@ export default function Login() {
               <Text style={styles.dividerText}>OR</Text>
               <View style={styles.dividerLine} />
             </View>
+
+            {/* Google Sign In Button */}
+            <TouchableOpacity
+              style={[styles.googleButton, isGoogleLoading && styles.googleButtonDisabled]}
+              onPress={handleGoogleLogin}
+              disabled={isGoogleLoading}
+            >
+              <Ionicons name="logo-google" size={20} color="#fff" style={styles.googleIcon} />
+              {isGoogleLoading ? (
+                <Text style={styles.googleButtonText}>Signing in with Google...</Text>
+              ) : (
+                <Text style={styles.googleButtonText}>Continue with Google</Text>
+              )}
+            </TouchableOpacity>
 
             <TouchableOpacity style={styles.signUpButton} onPress={handleSignUp}>
               <Text style={styles.signUpText}>Don't have an account? Sign Up</Text>
@@ -219,6 +253,26 @@ const styles = StyleSheet.create({
     marginHorizontal: 16,
     color: '#666',
     fontSize: 14,
+  },
+  googleButton: {
+    backgroundColor: '#DB4437',
+    paddingVertical: 16,
+    borderRadius: 12,
+    alignItems: 'center',
+    marginBottom: 24,
+    flexDirection: 'row',
+    justifyContent: 'center',
+  },
+  googleButtonDisabled: {
+    backgroundColor: '#a0a0a0',
+  },
+  googleIcon: {
+    marginRight: 8,
+  },
+  googleButtonText: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: '600',
   },
   signUpButton: {
     alignItems: 'center',
